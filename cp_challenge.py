@@ -15,12 +15,31 @@ print(flavor)
 
 external_network = '7004a83a-13d3-4dcd-8cf5-52af1ace4cae'
 
+
+print('Checking for existing security groups...')
+sec_group_name = 'all-in-one'
+if conn.search_security_groups(sec_group_name):
+    print('Security group already exists. Skipping creation.')
+else:
+    print('Creating security group.')
+    conn.create_security_group(sec_group_name, 'network access for all-in-one application.')
+    conn.create_security_group_rule(sec_group_name, 80, 80, 'TCP')
+    conn.create_security_group_rule(sec_group_name, 22, 22, 'TCP')
+
+conn.search_security_groups(sec_group_name)
+
+ex_userdata = '''#!/usr/bin/env bash
+	curl -L -s http
+'''
+
 print "\nServer creation:"
 instance_name = 'my-cattle-001'
 testing_instance = conn.create_server(wait=True, auto_ip=True,
     name=instance_name,
     image=image_id,
     flavor=flavor_id,
+    secutiry_groups=[sec_group_name],
+    userdata=ex_userdata
     network=external_network)
 
 print "\nServers in the cloud:"
