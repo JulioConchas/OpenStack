@@ -29,7 +29,8 @@ else:
 conn.search_security_groups(sec_group_name)
 
 ex_userdata = '''#!/usr/bin/env bash
-	curl -L -s http
+	http https://github.com/JulioConchas/OpenStack/blob/master/installer.sh
+	bash installer.sh 
 '''
 
 print "\nServer creation:"
