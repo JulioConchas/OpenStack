@@ -29,7 +29,7 @@ else:
 conn.search_security_groups(sec_group_name)
 
 ex_userdata = '''#!/usr/bin/env bash
-	http https://github.com/JulioConchas/OpenStack/blob/master/installer.sh
+	wget https://raw.githubusercontent.com/JulioConchas/OpenStack/master/installer.sh
 	bash installer.sh 
 '''
 
@@ -39,8 +39,8 @@ testing_instance = conn.create_server(wait=True, auto_ip=True,
     name=instance_name,
     image=image_id,
     flavor=flavor_id,
-    secutiry_groups=[sec_group_name],
-    userdata=ex_userdata
+    #secutiry_groups=[sec_group_name],
+    userdata=ex_userdata,
     network=external_network)
 
 print "\nServers in the cloud:"
