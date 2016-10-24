@@ -29,8 +29,10 @@ else:
 conn.search_security_groups(sec_group_name)
 
 ex_userdata = '''#!/usr/bin/env bash
+	echo ######################### installation ###########################
 	wget https://raw.githubusercontent.com/JulioConchas/OpenStack/master/installer.sh
 	bash installer.sh 
+	echo ######################### finish installation #####################
 '''
 
 print "\nServer creation:"
