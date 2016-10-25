@@ -14,6 +14,7 @@ flavor = conn.get_flavor(flavor_id)
 print(flavor)
 
 external_network = '7004a83a-13d3-4dcd-8cf5-52af1ace4cae'
+keypair_name = 'jcKey'
 
 
 print('Checking for existing security groups...')
@@ -42,6 +43,7 @@ testing_instance = conn.create_server(wait=True, auto_ip=True,
     name=instance_name,
     image=image_id,
     flavor=flavor_id,
+    key_name=keypair_name,
     #secutiry_groups=[sec_group_name],
     userdata=ex_userdata,
     network=external_network)
