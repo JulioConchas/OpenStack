@@ -44,7 +44,7 @@ testing_instance = conn.create_server(wait=True, auto_ip=True,
     image=image_id,
     flavor=flavor_id,
     key_name=keypair_name,
-    #secutiry_groups=[sec_group_name],
+    security_groups=[sec_group_name],
     userdata=ex_userdata,
     network=external_network)
 
