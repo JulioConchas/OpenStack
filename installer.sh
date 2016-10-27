@@ -15,6 +15,8 @@ echo "##### web microservice downloaded #####"
 
 echo "##### installing mysql-server #####"
 
+debconf-set-selections <<< 'mysql-server mysql-server/root_password password 1234'
+debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password 1234'
 apt-get install -y mysql-server
 mysql --version
 
